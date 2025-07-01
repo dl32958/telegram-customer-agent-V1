@@ -1,0 +1,13 @@
+credentials.json
+.env
+
+__pycache__/
+
+.vscode/
+
+.DS_Store
+*.log
+*.tmp
+
+.ipynb_checkpoints/
+products.csv
