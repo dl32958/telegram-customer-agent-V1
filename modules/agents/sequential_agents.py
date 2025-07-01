@@ -16,7 +16,7 @@ def create_agents(df, client) -> tuple[SequentialAgent, Agent, Agent, Agent]:
     - Fragrance Notes: String 
     - Type: String 
     - Volume (ml): Integer 
-    - Price (PKR): Integer 
+    - Price (USD): Integer 
     - Stock: Integer 
     - Gender: String (Men, Women, Unisex)
     - Alcohol-Free: String (e.g., Yes, No)
@@ -123,18 +123,18 @@ def create_agents(df, client) -> tuple[SequentialAgent, Agent, Agent, Agent]:
             - Phone: 10+ digits.  
             - Email: A valid email address with sign `@`
             - Contact Mode: WhatsApp/Call.  
-            - Products: Use `calculate_order_price` for Product ID, Total Price (PKR), Corrected Name.  
+            - Products: Use `calculate_order_price` for Product ID, Total Price (USD), Corrected Name.  
             - Payment: Allowed options.  
             5. If invalid/missing fields:  
             - Store valid fields in `state.order_details` (e.g., `{{'Customer Name': 'John Doe', Email: 'abcd@gmail.com', 'Products': [{{'name': 'Oud Al Jannah', 'quantity': 2}}], ...}}`).  
             - Re-prompt for issues (e.g., "Invalid product. Did you mean [suggestions]? Provide correct details.").  
             6. If all fields collected and `state.bill_confirmed` is False:  
-            - Sum Total Price (PKR) from `calculate_order_price`.  
-            - Show bill: "Order summary: [Product]: [Quantity] x [Price/unit] PKR = [Total] PKR\nTotal: [Total Bill] PKR\nCustomer: [Name], Phone: [Number], Contact: [Mode], City: [City]\nReply 'confirm' or correct details."  
+            - Sum Total Price (USD) from `calculate_order_price`.  
+            - Show bill: "Order summary: [Product]: [Quantity] x [Price/unit] USD = [Total] USD\nTotal: [Total Bill] USD\nCustomer: [Name], Phone: [Number], Contact: [Mode], City: [City]\nReply 'confirm' or correct details."  
             - Store bill in `state.order_details['bill']`.  
             7. If user replies 'confirm' and details complete:  
             - Set `state.bill_confirmed` to True.  
-            - For each product, create `order_details` with all fields (Customer Name, Phone Number, Email, Contact Mode, Product ID, Quantity, Payment Method, Total Price (PKR), City, Product Name).  
+            - For each product, create `order_details` with all fields (Customer Name, Phone Number, Email, Contact Mode, Product ID, Quantity, Payment Method, Total Price (USD), City, Product Name).  
             - Call `save_order_to_sheet` with `order_details` and order ID with `ORD` prefix and 5 digits.  
             - On error: "Error saving order: [error]. Please retry or provide details again."  
             - On success: "Order for [products] placed. Order ID: [ID]. We have sent you an email with your order details as well. Have a great day!"  

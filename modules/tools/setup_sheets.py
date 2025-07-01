@@ -26,7 +26,7 @@ def initialize_google_sheets(config: Config) -> tuple[gspread.Client, pd.DataFra
             df = pd.DataFrame(data[1:], columns=data[0])
             if not df.empty:
                 df['Volume (ml)'] = pd.to_numeric(df['Volume (ml)'], errors='coerce').fillna(0).astype(int)
-                df['Price (PKR)'] = pd.to_numeric(df['Price (PKR)'].str.replace(",", ""), errors='coerce').fillna(0).astype(float)
+                df['Price (USD)'] = pd.to_numeric(df['Price (USD)'].str.replace(",", ""), errors='coerce').fillna(0).astype(float)
                 df['Stock'] = pd.to_numeric(df['Stock'], errors='coerce').fillna(0).astype(int)
                 df['Rating'] = pd.to_numeric(df['Rating'], errors='coerce').fillna(3.6).astype(float)
             df.to_csv("products.csv", index=False)
