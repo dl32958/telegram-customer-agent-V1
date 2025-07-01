@@ -55,7 +55,7 @@ def save_order_to_sheet(order_details: Dict[str, Any], order_id: Optional[str] =
         Order ID: {order_id}
         Product: {order_details['Product Name']}
         Quantity: {order_details['Quantity']}
-        Total: {order_details['Total Price (PKR)']} PKR
+        Total: {order_details['Total Price (USD)']} USD
         Payment Method: {order_details['Payment Method']}
         City: {order_details['City']}
 
